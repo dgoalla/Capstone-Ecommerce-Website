@@ -1,0 +1,33 @@
+<div class="container pt-5">
+    <div *ngIf = "hasItems">
+        <h1>Your Orders</h1>
+
+        <div class="alert alert-success">
+            You order has been placed successfully.
+        </div>
+           
+    </div>
+   
+    <div *ngIf = "!hasItems">
+        <div class="alert alert-danger">
+            No available orders at this moment. Click on shop products to continue shopping.
+        </div>
+    </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-12 justify-center">
+            <div *ngFor= "let item of products" class="bg-light div-center pt-3">
+                <div class="col-sm-12 col-md-12 col-lg-12 pt-3 pb-3">
+                        <img src="../../assets/images/{{item.productimage}}" alt="" class="productimg">
+                    
+                        {{item.productname}}<br>
+                        <div class="pt-1">
+                                <strong> Company : </strong> <span class="mr-5">{{item.company}}</span>
+                                <strong> Type : </strong> <span class="mr-5">{{item.producttype}}</span>    
+                                <strong> Price : </strong> <span class="mr-5">{{item.productprice}}</span>   
+                         </div>
+                   
+                </div>
+
+            </div>
+    </div>
+</div>

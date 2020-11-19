@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './auth/auth.module';
@@ -23,7 +22,6 @@ import { OrdersComponent } from './orders/orders.component';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    ProfileComponent,
     CreateUserComponent,
     CreateProductComponent,
     ManageProductsComponent,

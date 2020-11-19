@@ -1,0 +1,34 @@
+.div-prod
+{
+    margin: 0;
+}
+
+.viewimage{
+    height: 60px;
+    width: 50px;
+}
+
+table{
+    table-layout: auto; width: 100%
+}
+
+td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+th{
+    white-space: nowrap;
+}
+
+.div-img
+{
+    float: right;
+    align-items: right;
+    justify-content: right;
+    justify-items: right;
+    text-align: right;
+}
+
+

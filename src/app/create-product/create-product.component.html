@@ -1,0 +1,133 @@
+<div class="container pt-5">
+    <div class="row">
+      <div class="col-md-5">
+          <span *ngIf= "!updateform">
+            <h1 class="page-title">Add New Product</h1>
+          </span>
+          <span *ngIf= "updateform">
+            <h1 class="page-title">Update Product Details</h1>
+          </span>
+       
+        <form #createproductForm="ngForm">
+            
+          <div class="form-group pt-3">
+            <div *ngIf="errors.length > 0" class="alert alert-danger">
+            <ul *ngFor = "let error of errors">
+                <li>{{ error }}</li>
+            </ul>
+            </div>
+        
+            <label for="productname">Name</label>
+           <input type="text"
+                   class="form-control"
+                   [(ngModel)] = "formData.productname"
+                   name="productname"
+                   #productname = "ngModel"
+                   required>
+          </div>
+          
+          <div *ngIf="productname.invalid && (productname.dirty || productname.touched)"
+            class="alert alert-danger">
+            <div *ngIf="productname.errors.required">
+                product name is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="productdesc">Description</label>
+            <textarea rows="5" cols="10"
+                   class="form-control"
+                   [(ngModel)] = "formData.productdesc"
+                   name="productdesc"
+                   #productdesc = "ngModel"
+                   required></textarea>
+          </div>
+          <div *ngIf="productdesc.invalid && (productdesc.dirty || productdesc.touched)"
+            class="alert alert-danger">
+            <div *ngIf="productdesc.errors.required">
+                product desc is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="producttype">Product Type</label>
+            <input rows="5" cols="10"
+                   class="form-control"
+                   [(ngModel)] = "formData.producttype"
+                   name="producttype"
+                   #producttype = "ngModel"
+                   required>
+          </div>
+          <div *ngIf="producttype.invalid && (producttype.dirty || producttype.touched)"
+            class="alert alert-danger">
+            <div *ngIf="producttype.errors.required">
+                product Type is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="company">Company</label>
+            <select name="company" class="form-control" [(ngModel)]= "formData.company" #company="ngModel" required>
+              <option disabled>Select</option>
+              <option>Apple</option>
+              <option>Samsung</option>
+              <option>Dell</option>
+              <option>HP</option>
+             </select>
+
+          </div>
+           <div *ngIf="company.invalid && (company.dirty || company.touched)"
+            class="alert alert-danger">
+            <div *ngIf="company.errors.required">
+                companyis required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="productprice">Price</label>
+            <input type="text"
+                   class="form-control"
+                   [(ngModel)] = "formData.productprice"
+                   #productprice = "ngModel"
+                   name="productprice"
+                   required>
+          </div>
+          <div *ngIf="productprice.invalid && (productprice.dirty || productprice.touched)"
+            class="alert alert-danger">
+            <div *ngIf="productprice.errors.required">
+                product price is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="productimage">Image</label>
+            <input type="file" class="custom-file-input"  [(ngModel)] = "formData.productimage" #productimage = "ngModel" name="productimage" required>
+            <label class="custom-file-label lbl_upload" for="productimg">{{formData.productimage}}</label>
+            
+          </div>
+          
+           <div *ngIf="productimage.invalid && (productimage.dirty || productimage.touched)"
+            class="alert alert-danger">
+            <div *ngIf="productimage.errors.required">
+              Image is required
+            </div>
+          </div>
+
+          <div class="offset-4">
+           <span *ngIf = "!updateform; else gotoupdate">
+                <button (click) = "addProduct()" type="submit"  class="btn btn-success mr-3" [disabled] = "!createproductForm.form.valid">Submit</button>
+            </span> 
+            <ng-template #gotoupdate>
+                <input type="hidden" [(ngModel)] = "formData.id" #password = "ngModel" name="id"> 
+                <button (click) = "updateProduct()" type="submit"  class="btn btn-success mr-3">Update</button>
+            </ng-template>
+          <a class="btn btn-warning" [routerLink]="['/manage-products']">Back</a>
+        </div>
+
+        <div *ngIf="msg" class="pt-5">
+            <span class="alert alert-success">{{msg}}</span>
+        </div>
+        </form>
+      </div>
+    </div>
+</div>

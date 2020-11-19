@@ -1,0 +1,67 @@
+<div class="container-fluid pt-3">
+    <h1>Your Cart Items</h1>
+
+    <div class="row pt-3" *ngIf = "!isCartEmpty; else notEmpty">
+        <div class="col-sm-7 col-md-7 col-lg-7">
+                <div *ngFor= "let item of cartItems" class="pt-3">
+                    <div class="col-sm-12 col-md-12 col-lg-12 bg-light pt-3 pb-3">
+                        <img src="../../assets/images/remove.png" alt="" class="img-remove" (click) = "removeItem(item.product._id)" aria-placeholder="remove from cart">
+                            <img src="../../assets/images/{{item.product.productimage}}" alt="" class="productimg">
+                        
+                            {{item.product.productname}}<br>
+                            <div class="pt-1">
+                                    <strong> Company : </strong> <span class="mr-5">{{item.product.company}}</span>
+                                    <strong> Type : </strong> <span class="mr-5">{{item.product.producttype}}</span>    
+                                    <strong> Price : </strong> <span class="mr-5">{{item.product.productprice}}</span>   
+                                    <strong> Quantity : </strong> <span class="div-quant span-quant mr-3">{{item.quantity}}</span>
+                                    <img src="../../assets/images/plusimg.png" alt="" class="addimg mr-3" (click) = "addquantity(item.product._id,item.quantity)">
+                                    <img src="../../assets/images/minusimg.png" alt="" class="removeimg " (click) = "removequantity(item.product._id, item.quantity)">
+                            </div>
+                       
+                    </div>
+
+                </div>
+        </div>
+
+        <div class="col-sm-5 col-md-5 col-lg-5 jumbotron p-5">
+            <h2>Total Items</h2>
+            <div *ngFor= "let item of cartItems" class="pt-3">
+                <span>
+                    {{item.product.productname}}  :
+                </span>
+                <span class="font-weight-bold span-total">
+                    {{item.quantity * item.product.productprice}}
+                </span>
+                
+            </div>
+            
+            <div class="font-weight-bold justify-center pt-5 totalprice">
+                Total Price : {{totalPrice}}
+                <div class="pt-5"> 
+                    <a [routerLink] = "['/shop-products']" class="btn btn-primary mr-3">Add More</a>
+                    <button (click) = "checkout()" class="btn btn-danger">Checkout</button>    
+                </div>
+            </div>
+             
+            
+          
+        </div>
+
+        <!-- <div *ngIf= "ischeckout" class="pt-5 justify-center float-center">
+            <p class="alert alert-success">
+                {{msg}}
+            </p>
+        </div> -->
+    </div>
+
+    <ng-template #notEmpty class="pt-3">
+        <div class="jumbotron">
+            <p class="font-weight-bold totalprice justify-center ">
+                No items Added. Cart is empty.
+                <a class="btn btn-primary mr-3" [routerLink]="['/shop-products']">Add more items</a>
+            </p>
+            <br>
+            
+        </div>
+    </ng-template>
+</div>
